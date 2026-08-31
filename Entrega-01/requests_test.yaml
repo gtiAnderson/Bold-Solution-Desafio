@@ -1,0 +1,132 @@
+opencollection: 1.0.0
+info:
+  name: Bold Solution - Paths
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ''
+      port: ''
+      auth:
+        username: ''
+        password: ''
+      bypassProxy: ''
+items:
+  - info:
+      name: buscar cliente por id
+      type: http
+      seq: 2
+    http:
+      method: GET
+      url: http://localhost:5678/webhook-test/389e4f77-91b4-4002-8796-4d990471f457/clientes/1
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: buscar tickets filtro prioridade
+      type: http
+      seq: 6
+    http:
+      method: GET
+      url: http://localhost:5678/webhook-test/tickets?prioridade=alta
+      params:
+        - name: prioridade
+          value: alta
+          type: query
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: buscar tickets filtro status
+      type: http
+      seq: 5
+    http:
+      method: GET
+      url: http://localhost:5678/webhook-test/tickets?status=aberto
+      params:
+        - name: status
+          value: aberto
+          type: query
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: criar cliente
+      type: http
+      seq: 1
+    http:
+      method: POST
+      url: http://localhost:5678/webhook-test/cliente
+      body:
+        type: json
+        data: |-
+          { 
+            "nome": "Anderson",
+            "email": "anderson1@email.com",
+            "telefone": "75991058340"
+          }
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: criar tickets
+      type: http
+      seq: 3
+    http:
+      method: POST
+      url: http://localhost:5678/webhook-test/tickets
+      body:
+        type: json
+        data: |-
+          {
+            "cliente_id": 1,
+            "titulo": "Problema no acesso",
+            "descricao": "Não consigo acessar minha conta",
+            "prioridade": "alta"
+          }
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: buscar tickets sem filtro
+      type: http
+      seq: 4
+    http:
+      method: GET
+      url: http://localhost:5678/webhook-test/tickets
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+bundled: true
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
+    exportedAt: '2026-08-26T19:51:19.234Z'
+    exportedUsing: Bruno

@@ -1,0 +1,239 @@
+opencollection: 1.0.0
+info:
+  name: Bold Solution - Paths
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ''
+      port: ''
+      auth:
+        username: ''
+        password: ''
+      bypassProxy: ''
+items:
+  - info:
+      name: Alterar status
+      type: http
+      seq: 9
+    http:
+      method: PATCH
+      url: https://dev.boldsolution.com.br/webhook/3cbcc487-2e16-4ffd-b838-6995b9c6ec40/tickets/:id/status
+      params:
+        - name: id
+          value: '99'
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "status": "em_atendimento"
+          }
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Consultar cliente
+      type: http
+      seq: 2
+    http:
+      method: GET
+      url: https://dev.boldsolution.com.br/webhook/389e4f77-91b4-4002-8796-4d990471f457/clientes/:id
+      params:
+        - name: id
+          value: ''
+          type: path
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Listar tickets (filtro por prioridade)
+      type: http
+      seq: 7
+    http:
+      method: GET
+      url: https://dev.boldsolution.com.br/webhook/tickets?prioridade=alta
+      params:
+        - name: prioridade
+          value: alta
+          type: query
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Listar tickets (filtro por status)
+      type: http
+      seq: 6
+    http:
+      method: GET
+      url: https://dev.boldsolution.com.br/webhook/tickets?status=aberto
+      params:
+        - name: status
+          value: aberto
+          type: query
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Consultar ticket
+      type: http
+      seq: 8
+    http:
+      method: GET
+      url: https://dev.boldsolution.com.br/webhook/01e05f16-1b04-47d1-b206-10044b7ac4cf/tickets/:id
+      params:
+        - name: id
+          value: '4'
+          type: path
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Listar tickets (sem filtro)
+      type: http
+      seq: 5
+    http:
+      method: GET
+      url: https://dev.boldsolution.com.br/webhook/tickets
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Cadastrar cliente
+      type: http
+      seq: 1
+    http:
+      method: POST
+      url: https://dev.boldsolution.com.br/webhook/cliente
+      body:
+        type: json
+        data: |-
+          { 
+            "nome": "teste",
+            "email": "teste1@email.com",
+            "telefone": "75991058340"
+          }
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Registrar interação
+      type: http
+      seq: 11
+    http:
+      method: POST
+      url: https://dev.boldsolution.com.br/webhook/3cbcc487-2e16-4ffd-b838-6995b9c6ec40/tickets/:id/interacoes
+      params:
+        - name: id
+          value: ''
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "mensagem": "Cliente informou que o problema continua.",
+            "tipo": "mensagem"
+          }
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Criar ticket
+      type: http
+      seq: 4
+    http:
+      method: POST
+      url: https://dev.boldsolution.com.br/webhook/tickets
+      body:
+        type: json
+        data: |-
+          {
+            "cliente_id": 5,
+            "titulo": "Problema no acesso",
+            "descricao": "Não consigo acessar minha conta",
+            "prioridade": "alta"
+          }
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Remover ticket
+      type: http
+      seq: 10
+    http:
+      method: DELETE
+      url: https://dev.boldsolution.com.br/webhook/b6fa795a-dd40-415c-ae11-62e24a99dfdd/tickets/:id
+      params:
+        - name: id
+          value: '4'
+          type: path
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+  - info:
+      name: Remover cliente
+      type: http
+      seq: 3
+    http:
+      method: DELETE
+      url: https://dev.boldsolution.com.br/webhook/b6fa795a-dd40-415c-ae11-62e24a99dfdd/clientes/:id
+      params:
+        - name: id
+          value: '5'
+          type: path
+      auth: inherit
+    settings:
+      encodeUrl: true
+      timeout: 0
+      followRedirects: true
+      maxRedirects: 5
+      forwardAuthorizationHeader: false
+bundled: true
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
+    exportedAt: '2026-08-28T00:37:10.857Z'
+    exportedUsing: Bruno

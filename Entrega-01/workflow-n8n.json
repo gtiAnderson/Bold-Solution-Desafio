@@ -1,0 +1,645 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.sucesso }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        48
+      ],
+      "id": "2906ddd2-8269-4e5c-bde5-0a5154352d7f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        272
+      ],
+      "id": "fa328f81-36c4-4fbf-abe8-33aa7315136c",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cliente",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -208,
+        48
+      ],
+      "id": "07e0a2ed-3ec1-4218-83b4-48df3b7b1a17",
+      "name": "Post Clientes",
+      "webhookId": "c3214190-52c2-4941-acf0-2403919f8590"
+    },
+    {
+      "parameters": {
+        "path": "clientes/:id",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -208,
+        272
+      ],
+      "id": "f6e61ebc-cebb-4e29-b164-6620f087115f",
+      "name": "Get Clientes/:id",
+      "webhookId": "389e4f77-91b4-4002-8796-4d990471f457"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.erro }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        192,
+        592
+      ],
+      "id": "73bfaedc-53cd-49e1-b596-b0eb28ae2969",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tickets",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -224,
+        592
+      ],
+      "id": "1adf4b78-bb01-4c86-88cc-42e71fb99d8b",
+      "name": "Post tickets",
+      "webhookId": "c3214190-52c2-4941-acf0-2403919f8590"
+    },
+    {
+      "parameters": {
+        "path": "tickets",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -224,
+        912
+      ],
+      "id": "f1bf2fad-4fc8-4687-8bfb-da214f562733",
+      "name": "Get tickets",
+      "webhookId": "c3214190-52c2-4941-acf0-2403919f8590"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        -128
+      ],
+      "id": "747ab00a-0540-439e-88cd-629edae48568",
+      "name": "Respond to Post Clientes"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  sucesso: false,\n  mensagem: $json.erro,\n  campos_faltando: $json.campos_faltando\n} }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        64
+      ],
+      "id": "703e8f42-e2a1-48d9-afd4-392ba2241de9",
+      "name": "Respond to Post Clientes Error"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        224
+      ],
+      "id": "4cd5f443-0e7b-45c2-a63b-fd71b709952d",
+      "name": "Respond to Get Clientes/:id"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  mensagem: \"Cliente Não Encontrado\",\n} }}",
+        "options": {
+          "responseCode": 404
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        400
+      ],
+      "id": "fea26a23-2953-44ae-b587-b944f90881a9",
+      "name": "Respond to Get Clientes/:id Not Found"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  mensagem: $json.mensagem\n} }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        576
+      ],
+      "id": "fd96f230-7584-42f8-8eab-c12c7c4d0d21",
+      "name": "Respond to Post tickets Error"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        752
+      ],
+      "id": "24f4201f-5ee5-4c30-a64e-c52b443ab747",
+      "name": "Respond to Post tickets"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $input.all().map(item => item.json) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        912
+      ],
+      "id": "6447771c-607f-498d-a1fd-b8e9ec38b394",
+      "name": "Respond to Get tickets"
+    },
+    {
+      "parameters": {
+        "tableId": "tickets",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "protocolo",
+              "fieldValue": "={{ $json.protocolo }}"
+            },
+            {
+              "fieldId": "cliente_id",
+              "fieldValue": "={{ $json.cliente_id }}"
+            },
+            {
+              "fieldId": "titulo",
+              "fieldValue": "={{ $json.titulo }}"
+            },
+            {
+              "fieldId": "descricao",
+              "fieldValue": "={{ $json.descricao }}"
+            },
+            {
+              "fieldId": "prioridade",
+              "fieldValue": "={{ $json.prioridade }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.status }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        400,
+        720
+      ],
+      "id": "09875d2c-e7b6-48a6-9fad-567fb70a44cc",
+      "name": "Create Ticket",
+      "credentials": {
+        "supabaseApi": {
+          "id": "VDnAIQBnKH0CGYjG",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "clientes",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.params.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        0,
+        272
+      ],
+      "id": "2c6a25b5-8e5f-42b5-82fb-64b80f31ac2c",
+      "name": "Busca cliente pelo id",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "VDnAIQBnKH0CGYjG",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "clientes",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "nome",
+              "fieldValue": "={{ $json.body.nome }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.body.email }}"
+            },
+            {
+              "fieldId": "telefone",
+              "fieldValue": "={{ $json.body.telefone }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -128
+      ],
+      "id": "97675144-6b17-4490-b6fc-55926bab5eab",
+      "name": "Create Cliente",
+      "credentials": {
+        "supabaseApi": {
+          "id": "VDnAIQBnKH0CGYjG",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const query = $('Get tickets').first().json.query || {};\n\nconst status = query.status;\nconst prioridade = query.prioridade;\n\nconst tickets = $input.all();\n\nconst filtrados = tickets.filter(item => {\n  const ticket = item.json;\n\n  const statusOk = !status || ticket.status === status;\n  const prioridadeOk = !prioridade || ticket.prioridade === prioridade;\n\n  return statusOk && prioridadeOk;\n});\n\nreturn filtrados;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        192,
+        912
+      ],
+      "id": "350b1ce5-da18-4402-b6e5-72101138807c",
+      "name": "Filtragem"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "tickets",
+        "returnAll": true,
+        "matchType": "allFilters"
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        912
+      ],
+      "id": "490fcd26-0246-4373-b79a-726a0858f5b5",
+      "name": "Busca Tickets",
+      "credentials": {
+        "supabaseApi": {
+          "id": "VDnAIQBnKH0CGYjG",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body;\n\nif (!body.cliente_id || !body.titulo || !body.descricao) {\n  return [{ json: { erro: true, mensagem: 'Campos cliente_id, titulo e descricao são obrigatórios.' } }];\n}\n\nconst ano = new Date().getFullYear();\nconst timestamp = Date.now().toString().slice(-6);\nconst protocolo = `TCK-${ano}-${timestamp}`;\n\nreturn [{\n  json: {\n    cliente_id: body.cliente_id,\n    titulo: body.titulo,\n    descricao: body.descricao,\n    prioridade: body.prioridade || 'media',\n    status: 'aberto',\n    protocolo: protocolo\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        592
+      ],
+      "id": "d0f6c396-c9cc-46d5-b84f-d540f67e88ae",
+      "name": "Detecta Campos Obrigatorios"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\nconst camposObrigatorios = ['nome', 'email', 'telefone'];\n\nconst camposFaltando = camposObrigatorios.filter(\n  campo => !body?.[campo] || String(body[campo]).trim() === ''\n);\n\nif (camposFaltando.length > 0) {\n  return [\n    {\n      json: {\n        sucesso: false,\n        erro: 'Dados obrigatórios não informados.',\n        campos_faltando: camposFaltando\n      }\n    }\n  ];\n}\n\nreturn [\n  {\n    json: {\n      sucesso: true,\n      body\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        48
+      ],
+      "id": "1929d4b1-2f28-4560-ac05-b6531aeab67f",
+      "name": "Detecta Campos Obrigatórios"
+    }
+  ],
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Create Cliente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Post Clientes Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Get Clientes/:id",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Get Clientes/:id Not Found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post Clientes": {
+      "main": [
+        [
+          {
+            "node": "Detecta Campos Obrigatórios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Clientes/:id": {
+      "main": [
+        [
+          {
+            "node": "Busca cliente pelo id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Post tickets Error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post tickets": {
+      "main": [
+        [
+          {
+            "node": "Detecta Campos Obrigatorios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get tickets": {
+      "main": [
+        [
+          {
+            "node": "Busca Tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Ticket": {
+      "main": [
+        [
+          {
+            "node": "Respond to Post tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca cliente pelo id": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Cliente": {
+      "main": [
+        [
+          {
+            "node": "Respond to Post Clientes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtragem": {
+      "main": [
+        [
+          {
+            "node": "Respond to Get tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca Tickets": {
+      "main": [
+        [
+          {
+            "node": "Filtragem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detecta Campos Obrigatorios": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detecta Campos Obrigatórios": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e36af6e3fbbf7a89e2eb19c958b6dc87a801e3e1af925a565a6292adf28cdaff"
+  }
+}

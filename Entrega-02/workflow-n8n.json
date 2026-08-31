@@ -1,0 +1,1774 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.sucesso }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        32
+      ],
+      "id": "08a96060-e96f-41b5-a1ec-8a511e957e4a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        272
+      ],
+      "id": "3156c620-32b4-4201-b238-add31183ce5e",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cliente",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -416,
+        32
+      ],
+      "id": "e34f6bd1-2e67-46b4-91ed-3949e1cf8fc7",
+      "name": "Post Clientes",
+      "webhookId": "c3214190-52c2-4941-acf0-2403919f8590"
+    },
+    {
+      "parameters": {
+        "path": "clientes/:id",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -416,
+        272
+      ],
+      "id": "69009493-20b0-4693-9018-0b08e6cedcae",
+      "name": "Get Clientes/:id",
+      "webhookId": "389e4f77-91b4-4002-8796-4d990471f457"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.erro }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -16,
+        576
+      ],
+      "id": "705b85b7-17ae-4998-9436-08c546712ddd",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tickets",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -432,
+        576
+      ],
+      "id": "b5f0ff07-7198-4927-b4f1-103c388f9de9",
+      "name": "Post tickets",
+      "webhookId": "c3214190-52c2-4941-acf0-2403919f8590"
+    },
+    {
+      "parameters": {
+        "path": "tickets",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -432,
+        896
+      ],
+      "id": "82ea6cb2-dd67-4644-83c4-ff29a72457dc",
+      "name": "Get tickets",
+      "webhookId": "c3214190-52c2-4941-acf0-2403919f8590"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        -144
+      ],
+      "id": "3a9a886d-6e51-45a9-a34e-fb86e8f79a17",
+      "name": "Respond to Post Clientes"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  sucesso: false,\n  mensagem: $json.erro,\n  campos_faltando: $json.campos_faltando\n} }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        48
+      ],
+      "id": "4b75f7a0-c18a-4c9f-9a43-66e3ae7bbf11",
+      "name": "Respond to Post Clientes Error"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        224
+      ],
+      "id": "3a22950c-6cf7-4ec6-8f01-5a5ea779f228",
+      "name": "Respond to Get Clientes/:id"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  mensagem: \"Cliente Não Encontrado\",\n} }}",
+        "options": {
+          "responseCode": 404
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        384
+      ],
+      "id": "a65ac902-3224-4ab6-9256-a7632f0635a4",
+      "name": "Respond to Get Clientes/:id Not Found"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  mensagem: $json.mensagem\n} }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        560
+      ],
+      "id": "b5e8e4a8-27c2-428d-a290-08ac0867f99f",
+      "name": "Respond to Post tickets Error"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        736
+      ],
+      "id": "a6c4da91-70f0-41d7-84de-19a8608d59e9",
+      "name": "Respond to Post tickets"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $input.all().map(item => item.json) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        896
+      ],
+      "id": "9f0a0197-1e2d-43f9-b6c9-f987b1cced1c",
+      "name": "Respond to Get tickets"
+    },
+    {
+      "parameters": {
+        "tableId": "tickets",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "protocolo",
+              "fieldValue": "={{ $json.protocolo }}"
+            },
+            {
+              "fieldId": "cliente_id",
+              "fieldValue": "={{ $json.cliente_id }}"
+            },
+            {
+              "fieldId": "titulo",
+              "fieldValue": "={{ $json.titulo }}"
+            },
+            {
+              "fieldId": "descricao",
+              "fieldValue": "={{ $json.descricao }}"
+            },
+            {
+              "fieldId": "prioridade",
+              "fieldValue": "={{ $json.prioridade }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.status }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        240,
+        736
+      ],
+      "id": "1d50ea5e-81ff-4249-b93d-851ee69d34c0",
+      "name": "Create Ticket",
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "clientes",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.params.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        272
+      ],
+      "id": "3e48d6d7-8050-43b8-aa31-7f4b022492ca",
+      "name": "Busca cliente pelo id",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "clientes",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "nome",
+              "fieldValue": "={{ $json.body.nome }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.body.email }}"
+            },
+            {
+              "fieldId": "telefone",
+              "fieldValue": "={{ $json.body.telefone }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -144
+      ],
+      "id": "4ba63ee0-b9d6-47eb-b6fa-418a5953817f",
+      "name": "Create Cliente",
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const query = $('Get tickets').first().json.query || {};\n\nconst status = query.status;\nconst prioridade = query.prioridade;\n\nconst tickets = $input.all();\n\nconst filtrados = tickets.filter(item => {\n  const ticket = item.json;\n\n  const statusOk = !status || ticket.status === status;\n  const prioridadeOk = !prioridade || ticket.prioridade === prioridade;\n\n  return statusOk && prioridadeOk;\n});\n\nreturn filtrados;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        896
+      ],
+      "id": "e0d3fe83-8990-4394-bae8-77865aec0e31",
+      "name": "Filtragem"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body;\n\nif (!body.cliente_id || !body.titulo || !body.descricao) {\n  return [{ json: { erro: true, mensagem: 'Campos cliente_id, titulo e descricao são obrigatórios.' } }];\n}\n\nconst ano = new Date().getFullYear();\nconst timestamp = Date.now().toString().slice(-6);\nconst protocolo = `TCK-${ano}-${timestamp}`;\n\nreturn [{\n  json: {\n    cliente_id: body.cliente_id,\n    titulo: body.titulo,\n    descricao: body.descricao,\n    prioridade: body.prioridade || 'media',\n    status: 'aberto',\n    protocolo: protocolo\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -224,
+        576
+      ],
+      "id": "7f243e5a-a3a1-42e4-a5c4-5217095bd590",
+      "name": "Detecta Campos Obrigatorios"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\nconst camposObrigatorios = ['nome', 'email', 'telefone'];\n\nconst camposFaltando = camposObrigatorios.filter(\n  campo => !body?.[campo] || String(body[campo]).trim() === ''\n);\n\nif (camposFaltando.length > 0) {\n  return [\n    {\n      json: {\n        sucesso: false,\n        erro: 'Dados obrigatórios não informados.',\n        campos_faltando: camposFaltando\n      }\n    }\n  ];\n}\n\nreturn [\n  {\n    json: {\n      sucesso: true,\n      body\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        32
+      ],
+      "id": "bb5368fb-c260-48e0-a54b-4b3e879bd80c",
+      "name": "Detecta Campos Obrigatórios"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -16,
+        1136
+      ],
+      "id": "e1ba9458-8258-48ce-b5a8-70e9f8cea63c",
+      "name": "If3",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        688,
+        1056
+      ],
+      "id": "564a1f01-3b8a-40fc-ad2f-28dcd5c9974b",
+      "name": "Respond to Get tickets/:id"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  mensagem: \"Ticket Não Encontrado\",\n} }}",
+        "options": {
+          "responseCode": 404
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        688,
+        1248
+      ],
+      "id": "b8b0487f-ae19-498b-b76e-ecb014c71371",
+      "name": "Respond to Get tickets/:id Not Found"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "tickets",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.params.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        1136
+      ],
+      "id": "18013c2a-6764-4d97-9597-339ac4fa420c",
+      "name": "Buscar ticket pelo id",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "tickets",
+        "returnAll": true,
+        "matchType": "allFilters"
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        896
+      ],
+      "id": "301553b3-8d3e-48cb-9892-1ae4b169c8ec",
+      "name": "Buscar Tickets",
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "clientes",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Buscar ticket pelo id').first().json.cliente_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        160,
+        1056
+      ],
+      "id": "1923c684-7228-46cd-a596-5d3580f9f4fa",
+      "name": "Buscar cliente pelo id",
+      "alwaysOutputData": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ticket = $('Buscar ticket pelo id').first().json;\nconst cliente = $('Buscar cliente pelo id').first().json;\n\nconst interacoes = $input.all()\n  .map(item => item.json)\n  .filter(item => item.id);\n\nreturn [\n  {\n    json: {\n      ...ticket,\n      cliente_nome: cliente.nome,\n      cliente_email: cliente.email,\n      cliente_telefone: cliente.telefone,\n      interacoes\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        1056
+      ],
+      "id": "67958c9a-4b46-44a0-81f8-0761b510fad0",
+      "name": "Organiza interações"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "interacoes",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ticket_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Buscar ticket pelo id').first().json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        336,
+        1056
+      ],
+      "id": "8b98c5c0-05f7-4a7c-90a7-3d5deefd5364",
+      "name": "Buscar ticket_id",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "tickets/:id",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -432,
+        1136
+      ],
+      "id": "c98f6dbe-3112-4227-afb1-1810d7c25df8",
+      "name": "Get tickets/:id",
+      "webhookId": "01e05f16-1b04-47d1-b206-10044b7ac4cf"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tickets/:id/interacoes",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -432,
+        1472
+      ],
+      "id": "cfb8ec29-3b66-4210-8aa0-f983a792a831",
+      "name": "Post tickets/:id/interacoes",
+      "webhookId": "3cbcc487-2e16-4ffd-b838-6995b9c6ec40"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.erro }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        1472
+      ],
+      "id": "d993c779-9a59-422c-9235-e2800b845d29",
+      "name": "If4",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        400,
+        1456
+      ],
+      "id": "eeced479-4450-4540-b90d-fb6ceefdb767",
+      "name": "If5",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"mensagem\": \"O campo mensagem é obrigatório.\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        224,
+        1696
+      ],
+      "id": "0041bbcb-88ae-426c-8cdf-a650e9d3992e",
+      "name": "Respond to Post tickets/:id/interacoes 400"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"mensagem\": \"Ticket não encontrado\"\n}",
+        "options": {
+          "responseCode": 404
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        608,
+        1696
+      ],
+      "id": "21490f8c-bbe3-4036-a866-8f06d66b1580",
+      "name": "Respond to Post tickets/:id/interacoes 404"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body || {};\nconst ticket_id = $json.params.id;\n\nif (!ticket_id || !body.mensagem) {\n  return [\n    {\n      json: {\n        erro: true,\n        mensagem: 'O campo mensagem é obrigatório.'\n      }\n    }\n  ];\n}\n\nreturn [\n  {\n    json: {\n      erro: false,\n      ticket_id: Number(ticket_id),\n      tipo: body.tipo || 'mensagem',\n      mensagem: body.mensagem\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        1472
+      ],
+      "id": "664af0c9-12a8-4757-884f-5777ec24c499",
+      "name": "Validar"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        832,
+        1440
+      ],
+      "id": "91ad7572-b077-4181-9a36-d74a0da314d5",
+      "name": "Respond to Get tickets/:id1"
+    },
+    {
+      "parameters": {
+        "tableId": "interacoes",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ticket_id",
+              "fieldValue": "={{ $('Validar').first().json.ticket_id }}"
+            },
+            {
+              "fieldId": "tipo",
+              "fieldValue": "={{ $('Validar').first().json.tipo }}"
+            },
+            {
+              "fieldId": "mensagem",
+              "fieldValue": "={{ $('Validar').first().json.mensagem }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        624,
+        1440
+      ],
+      "id": "9016e1fb-56a4-4eef-8f3d-ff59adedc049",
+      "name": "Create Interação",
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "tickets",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.ticket_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        224,
+        1456
+      ],
+      "id": "1de74ed2-6588-4e12-94d8-dda422d3eef2",
+      "name": "Busca ticket_id",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.erro }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        1920
+      ],
+      "id": "923c1145-4d25-4b03-b380-d4917572df52",
+      "name": "If6",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        400,
+        1904
+      ],
+      "id": "96031d89-4161-4aaf-984b-6aae36f9f70c",
+      "name": "If7",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "jsCode": "const statusValidos = [\n  'aberto',\n  'em_atendimento',\n  'aguardando_cliente',\n  'resolvido',\n  'cancelado'\n];\n\nconst body = $json.body || {};\nconst id = $json.params?.id;\nconst status = body.status;\n\nif (!id) {\n  return [{\n    json: {\n      erro: true,\n      mensagem: 'ID do ticket é obrigatório.'\n    }\n  }];\n}\n\nif (!status || !statusValidos.includes(status)) {\n  return [{\n    json: {\n      erro: true,\n      mensagem: 'Status inválido. Valores aceitos: ' + statusValidos.join(', ')\n    }\n  }];\n}\n\nreturn [{\n  json: {\n    erro: false,\n    id: Number(id),\n    status\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        1920
+      ],
+      "id": "31376d3c-37de-4414-8ff9-d4cfa4c4973e",
+      "name": "Validar1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "PATCH",
+        "path": "tickets/:id/status",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -432,
+        1920
+      ],
+      "id": "40ea51fc-0568-4636-a539-032f43232273",
+      "name": "Patch tickets/:id/status",
+      "webhookId": "3cbcc487-2e16-4ffd-b838-6995b9c6ec40"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "tickets",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.status }}"
+            },
+            {
+              "fieldId": "atualizado_em",
+              "fieldValue": "={{ new Date().toISOString() }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        224,
+        1904
+      ],
+      "id": "7bc3362d-d4ff-4396-9e65-11a83494194a",
+      "name": "Atualizar ticket",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"mensagem\": \"Ticket não encontrado\"\n}",
+        "options": {
+          "responseCode": 404
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        608,
+        2144
+      ],
+      "id": "07656bfe-5fd0-43aa-b00f-c1e9d85e8bc8",
+      "name": "Respond to Patch tickets/:id/status 404"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { mensagem: $json.mensagem } }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        224,
+        2144
+      ],
+      "id": "fe5e000a-d1be-4ff9-b0a2-95a843fdb375",
+      "name": "Respond to Patch tickets/:id/status 400"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        832,
+        1888
+      ],
+      "id": "1567584e-d731-431a-a17f-b0795902baab",
+      "name": "Respond to Patch tickets/:id/status"
+    },
+    {
+      "parameters": {
+        "httpMethod": "DELETE",
+        "path": "tickets/:id",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -448,
+        2352
+      ],
+      "id": "7aa33cd0-b45c-42ff-bca1-a0f7cd14d04b",
+      "name": "Delete tickets/:id ",
+      "webhookId": "b6fa795a-dd40-415c-ae11-62e24a99dfdd"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "tableId": "tickets",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.params.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        2352
+      ],
+      "id": "fc12110e-1858-4d7b-8faa-0a1904e2cb16",
+      "name": "Deletar ticket",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -64,
+        2352
+      ],
+      "id": "a62b5a30-834f-4657-85e0-e6a7f4cbafcf",
+      "name": "If8",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"mensagem\": \"Ticket não encontrado\"\n}",
+        "options": {
+          "responseCode": 404
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        160,
+        2512
+      ],
+      "id": "6f289ccf-0f41-4f1e-b817-fda4e3f55eb8",
+      "name": "Respond to Delete tickets/:id "
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  mensagem: \"Ticket removido com sucesso\",\n  id: $json.id\n} }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        368,
+        2336
+      ],
+      "id": "49f3b71c-4ba4-4ae5-a6d9-5f5397aa8e9e",
+      "name": "Respond to Delete tickets/:id 1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4d3fb21c-4426-4243-b4c4-37e103d4c0f4",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -80,
+        2720
+      ],
+      "id": "28760243-47c6-4003-a355-122a48c976e5",
+      "name": "If9",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "httpMethod": "DELETE",
+        "path": "clientes/:id",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -464,
+        2720
+      ],
+      "id": "c73ff633-bd1b-4a2d-8453-d8f440b3fbc9",
+      "name": "Delete clientes/:id ",
+      "webhookId": "b6fa795a-dd40-415c-ae11-62e24a99dfdd"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "tableId": "clientes",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.params.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        2720
+      ],
+      "id": "e0f6e2d5-a860-431c-9371-7fd1eae9a8bf",
+      "name": "Deletar cliente",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "rwdXiaEYmNtOYjK2",
+          "name": "Supabase account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"mensagem\": \"Cliente não encontrado\"\n}",
+        "options": {
+          "responseCode": 404
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        144,
+        2880
+      ],
+      "id": "44f8d51c-cd4e-4527-825c-7237884b266b",
+      "name": "Respond to Delete clientes/:id 404"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"mensagem\": \"Cliente e chamados associados removidos com sucesso\",\n  \"id\": 1\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        352,
+        2704
+      ],
+      "id": "d1c41ed5-b861-4a8a-8018-3e6f7733635f",
+      "name": "Respond to Delete clientes/:id 200"
+    }
+  ],
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Create Cliente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Post Clientes Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Get Clientes/:id",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Get Clientes/:id Not Found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post Clientes": {
+      "main": [
+        [
+          {
+            "node": "Detecta Campos Obrigatórios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Clientes/:id": {
+      "main": [
+        [
+          {
+            "node": "Busca cliente pelo id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Post tickets Error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post tickets": {
+      "main": [
+        [
+          {
+            "node": "Detecta Campos Obrigatorios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get tickets": {
+      "main": [
+        [
+          {
+            "node": "Buscar Tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Ticket": {
+      "main": [
+        [
+          {
+            "node": "Respond to Post tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca cliente pelo id": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Cliente": {
+      "main": [
+        [
+          {
+            "node": "Respond to Post Clientes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtragem": {
+      "main": [
+        [
+          {
+            "node": "Respond to Get tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detecta Campos Obrigatorios": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detecta Campos Obrigatórios": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Buscar cliente pelo id",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Get tickets/:id Not Found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar ticket pelo id": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Tickets": {
+      "main": [
+        [
+          {
+            "node": "Filtragem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar cliente pelo id": {
+      "main": [
+        [
+          {
+            "node": "Buscar ticket_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Organiza interações": {
+      "main": [
+        [
+          {
+            "node": "Respond to Get tickets/:id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar ticket_id": {
+      "main": [
+        [
+          {
+            "node": "Organiza interações",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get tickets/:id": {
+      "main": [
+        [
+          {
+            "node": "Buscar ticket pelo id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post tickets/:id/interacoes": {
+      "main": [
+        [
+          {
+            "node": "Validar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Busca ticket_id",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Post tickets/:id/interacoes 400",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Create Interação",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Post tickets/:id/interacoes 404",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Interação": {
+      "main": [
+        [
+          {
+            "node": "Respond to Get tickets/:id1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca ticket_id": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "Atualizar ticket",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Patch tickets/:id/status 400",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If7": {
+      "main": [
+        [
+          {
+            "node": "Respond to Patch tickets/:id/status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Patch tickets/:id/status 404",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar1": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Patch tickets/:id/status": {
+      "main": [
+        [
+          {
+            "node": "Validar1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar ticket": {
+      "main": [
+        [
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete tickets/:id ": {
+      "main": [
+        [
+          {
+            "node": "Deletar ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deletar ticket": {
+      "main": [
+        [
+          {
+            "node": "If8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If8": {
+      "main": [
+        [
+          {
+            "node": "Respond to Delete tickets/:id 1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Delete tickets/:id ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If9": {
+      "main": [
+        [
+          {
+            "node": "Respond to Delete clientes/:id 200",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Delete clientes/:id 404",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete clientes/:id ": {
+      "main": [
+        [
+          {
+            "node": "Deletar cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deletar cliente": {
+      "main": [
+        [
+          {
+            "node": "If9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7cce0f22afd979eb5cdabdf675922ece8fbc867ff522ebcb757171840eb6783a"
+  }
+}
